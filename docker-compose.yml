@@ -6,6 +6,7 @@ services:
     container_name: doc-phpfpm
     volumes:
       - ./application:/var/www
+      - ./php/php.ini:/usr/local/etc/php/php.ini
     depends_on:
       # - redis
       - db
