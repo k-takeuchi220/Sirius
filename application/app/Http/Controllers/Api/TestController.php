@@ -10,7 +10,6 @@ class TestController extends Controller
 
     public function index()
     {
-        // test commit
         return 'test message';
     }
 }
