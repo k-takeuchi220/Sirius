@@ -1,2 +1,4 @@
 /db/data/*
 /redis/data/*
+.vscode
+.php-cs-fixer.cache

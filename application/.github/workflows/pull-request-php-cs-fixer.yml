@@ -1,0 +1,37 @@
+name: PHP Coding Standards Fixer
+
+on:
+  pull_request:
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Prepare
+        run: |
+          wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.0.0/php-cs-fixer.phar -O php-cs-fixer
+          chmod a+x php-cs-fixer
+
+      - name: OS Version
+        run: cat /etc/os-release
+
+      - name: PHP Version
+        run: php -v
+
+      - name: PHP CS Fixer Version
+        run: php php-cs-fixer --version
+
+      - name: PHP CS Fixer Run
+        run: php php-cs-fixer fix --diff -vvv --dry-run
