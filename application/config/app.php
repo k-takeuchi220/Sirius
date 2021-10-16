@@ -226,6 +226,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // add
+        'BladeFunc' => App\BladeFunc::class,
     ],
 
 ];
