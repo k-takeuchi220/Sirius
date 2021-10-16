@@ -21,3 +21,7 @@ ENV PATH $PATH:/composer/vendor/bin
 WORKDIR /var/www
 
 RUN composer global require "laravel/installer"
+
+# xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
