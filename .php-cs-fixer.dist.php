@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 $finder = PhpCsFixer\Finder::create()
     ->in([
@@ -9,6 +9,9 @@ $finder = PhpCsFixer\Finder::create()
         __DIR__ . '/database/migrations',
         __DIR__ . '/routes',
         __DIR__ . '/tests',
+    ])
+    ->exclude([
+        __DIR__ . '/bootstrap',
     ]);
 
 $config = new PhpCsFixer\Config();
