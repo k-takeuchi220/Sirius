@@ -2,7 +2,7 @@
 
 local machine
 ```
-$ git clone https://github.com/k-takeuchi220/recommendNote.git
+$ git clone https://github.com/k-takeuchi220/Sirius.git
 $ cd Sirius
 $ docker-compose up -d
 $ docker-compose exec phpfpm bash
