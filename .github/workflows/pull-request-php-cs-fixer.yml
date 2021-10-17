@@ -16,17 +16,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: dokcer-compose up
-        run: |
-          docker-compose build
-          docker-compose up -d
+        run: docker-compose build && docker-compose up -d
       
       - name: composer update
-        run: |
-          docker-compose exec -T phpfpm bash -c "composer update"
+        run: docker-compose exec -T phpfpm bash -c "composer update"
       
       - name: composer install
-        run: |
-          docker-compose exec -T phpfpm bash -c "composer install"
+        run: docker-compose exec -T phpfpm bash -c "composer install"
 
       - name: OS Version
         run: cat /etc/os-release
