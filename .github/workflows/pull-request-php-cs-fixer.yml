@@ -24,10 +24,10 @@ jobs:
         run: cat /etc/os-release
 
       - name: PHP Version
-        run: php -v
+        run: docker-compose exec -T phpfpm bash -c "php -v"
 
       - name: PHP CS Fixer Version
-        run: php php-cs-fixer --version
+        run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer --version"
 
       - name: PHP CS Fixer Dry Run
         run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer fix --dry-run --diff --using-cache=no ."
