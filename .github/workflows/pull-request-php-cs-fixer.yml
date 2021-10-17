@@ -30,7 +30,7 @@ jobs:
         run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer --version"
 
       - name: PHP CS Fixer Dry Run
-        run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer fix --dry-run --diff --using-cache=no ."
+        run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer fix --dry-run --diff --using-cache=no . || true"
 
       - name: PHP CS Fixer Execute
         run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer fix --using-cache=no ."
