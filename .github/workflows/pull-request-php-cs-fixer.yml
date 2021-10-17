@@ -23,7 +23,7 @@ jobs:
       - name: Prepare
         run: |
           wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.0.0/php-cs-fixer.phar -O php-cs-fixer
-          chmod a+x php-cs-fixer.phar
+          chmod a+x ./php-cs-fixer
 
       - name: OS Version
         run: cat /etc/os-release
