@@ -15,15 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-
-      - name: Prepare
+      - name: dokcer-compose up
         run: |
-          wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.0.0/php-cs-fixer.phar -O php-cs-fixer
-          chmod a+x ./php-cs-fixer
+          docker-compose build
+          docker-compose up -d
+      
+      - name: composer update
+        run: |
+          docker-compose exec -T phpfpm bash -c "composer update"
+      
+      - name: composer install
+        run: |
+          docker-compose exec -T phpfpm bash -c "composer install"
 
       - name: OS Version
         run: cat /etc/os-release
@@ -34,5 +37,8 @@ jobs:
       - name: PHP CS Fixer Version
         run: php php-cs-fixer --version
 
-      - name: PHP CS Fixer Run
-        run: php php-cs-fixer fix --diff -vvv --dry-run
+      - name: PHP CS Fixer Dry Run
+        run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer fix --dry-run --diff --using-cache=no ."
+
+      - name: PHP CS Fixer Execute
+        run: docker-compose exec -T phpfpm bash -c "./vendor/bin/php-cs-fixer fix --using-cache=no ."
