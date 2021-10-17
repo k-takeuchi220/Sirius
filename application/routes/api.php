@@ -17,5 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('testa', 'Api\Preprocess\TestPreprocessController@index');
 Route::post('sample1', 'Api\Preprocess\Sample\Sample1PreprocessController@index');

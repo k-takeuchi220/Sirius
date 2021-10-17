@@ -8,12 +8,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RequestBase extends FormRequest
 {
+    protected $requestData;
     // TODO : sessionチェックとvalidation
-    
+
     public function __construct(Request $request)
     {
         $content = $request->getContent();
         $data = json_decode($content, true);
+        $this->requestData = $data;
 
         // sessionチェックは一旦、行わない
 
@@ -26,6 +28,11 @@ class RequestBase extends FormRequest
         // }
     }
 
+    public function getRequestData(): array
+    {
+        return $this->requestData;
+    }
+
     // /**
     //  * Determine if the user is authorized to make this request.
     //  *
@@ -33,7 +40,7 @@ class RequestBase extends FormRequest
     //  */
     // public function authorize()
     // {
-    //     return false;
+    //     return true;
     // }
 
     // /**
@@ -43,8 +50,6 @@ class RequestBase extends FormRequest
     //  */
     // public function rules()
     // {
-    //     return [
-    //         //
-    //     ];
+    //     return self::$rules;
     // }
 }

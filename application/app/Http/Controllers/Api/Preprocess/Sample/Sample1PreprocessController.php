@@ -9,7 +9,10 @@ class Sample1PreprocessController extends PreprocessControllerBase
 {
     public function index(Sample1Request $request, Sample1Controller $controller)
     {
+        $requestData = $request->getRequestData();
+        $controller->setRequest($requestData);
         $result = $controller->main();
-        return $result;
+
+        return $controller->getResponse();
     }
 }

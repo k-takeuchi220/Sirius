@@ -8,7 +8,10 @@ class {{$name}}PreprocessController extends PreprocessControllerBase
 {
     public function index({{$name}}Request $request, {{$name}}Controller $controller)
     {
+        $requestData = $request->getRequestData();
+        $controller->setRequest($requestData);
         $result = $controller->main();
-        return $result;
+
+        return $controller->getResponse();
     }
 }
