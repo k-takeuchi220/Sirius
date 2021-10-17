@@ -1,0 +1,14 @@
+{
+    "dir": "Sample",
+    "comment": "API作成のサンプル",
+    "apis":[
+        {
+            "name": "Sample1",
+            "comment": "固定のメッセージを返すだけ",
+            "request":[],
+            "response": [
+                {"name": "msg", "type": "string", "comment": "Hello worldが固定で入る"}
+            ]
+        }
+    ]
+}
