@@ -8,10 +8,6 @@ jobs:
   php-cs-fixer:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: backend
-
     steps:
       - uses: actions/checkout@v2
 
