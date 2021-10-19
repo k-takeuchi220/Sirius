@@ -2,30 +2,21 @@
 
 namespace App\Console\Commands;
 
+use App\Consts\UserConst;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-class ApiCreateCommand extends Command
+class MakeApiCommand extends Command
 {
     public const PHP_TAG = '<?php'.PHP_EOL;
-
-    // generate file mode
-    public const MODE_OVERRIDE = 1;
-    public const MODE_CREATE_NEW = 2;
-
-    // file paths
-    public const REQUEST_PATH = './App/Http/Requests/Api';
-    public const PCONTROLLER_PATH = './App/Http/Controllers/Api/Preprocess';
-    public const CONTROLLER_PATH = './App/Http/Controllers/Api';
-    public const API_JSON_PATH = './generator/api/json/*';
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'api:create';
+    protected $signature = 'make:api';
 
     /**
      * The console command description.
@@ -48,18 +39,18 @@ class ApiCreateCommand extends Command
     public static $createFiles = [
         'Request' => [
             'viewFile' => 'request',
-            'mode' => self::MODE_OVERRIDE,
-            'path' => self::REQUEST_PATH
+            'mode' => UserConst::MODE_OVERRIDE,
+            'path' => UserConst::REQUEST_PATH
         ],
         'PreprocessController' => [
             'viewFile' => 'pcontroller',
-            'mode' => self::MODE_OVERRIDE,
-            'path' => self::PCONTROLLER_PATH
+            'mode' => UserConst::MODE_OVERRIDE,
+            'path' => UserConst::PCONTROLLER_PATH
         ],
         'Controller' => [
             'viewFile' => 'controller',
-            'mode' => self::MODE_CREATE_NEW,
-            'path' => self::CONTROLLER_PATH
+            'mode' => UserConst::MODE_CREATE_NEW,
+            'path' => UserConst::CONTROLLER_PATH
         ],
     ];
 
@@ -70,7 +61,7 @@ class ApiCreateCommand extends Command
      */
     public function handle()
     {
-        $files = glob(self::API_JSON_PATH);
+        $files = glob(UserConst::API_JSON_PATH.'/*');
         foreach ($files as $file) {
             $json = file_get_contents($file);
             $data = json_decode($json, true);
@@ -108,11 +99,11 @@ class ApiCreateCommand extends Command
     private function makeFile(string $path, string $content, int $mode): void
     {
         switch ($mode) {
-            case self::MODE_OVERRIDE:
+            case UserConst::MODE_OVERRIDE:
                 file_put_contents($path, $content);
                 break;
 
-            case self::MODE_CREATE_NEW:
+            case UserConst::MODE_CREATE_NEW:
                 if (!file_exists($path)) {
                     file_put_contents($path, $content);
                 }
