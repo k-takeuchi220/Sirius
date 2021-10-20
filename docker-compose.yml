@@ -31,7 +31,6 @@ services:
     container_name: doc-mysql
     environment:
       MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: pass
       TZ: Asia/Tokyo
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
@@ -51,18 +50,18 @@ services:
   #     - ./redis/data:/data
   #   command: redis-server --appendonly yes
 
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   restart: always
-  #   container_name: doc-phpmyadmin
-  #   environment:
-  #     - PMA_ARBITRARY=1
-  #     - PMA_HOST=db
-  #     - PMA_USER=root
-  #     - PMA_PASSWORD=pass
-  #   depends_on:
-  #     - db
-  #   ports:
-  #     - 8888:80
-  #   volumes:
-  #     - ./phpmyadmin/sessions:/sessions
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    container_name: doc-phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    depends_on:
+      - db
+    ports:
+      - 8888:80
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
