@@ -1,4 +1,4 @@
-## {{$name}}
+## {{strtoupper($method)}} {{$route}}
 
 {{$comment}}  
 
@@ -24,4 +24,3 @@ Response
 @endforeach
 @endif
 
----

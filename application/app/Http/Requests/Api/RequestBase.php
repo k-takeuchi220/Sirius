@@ -8,15 +8,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RequestBase extends FormRequest
 {
-    protected $requestData;
     // TODO : sessionチェックとvalidation
 
     public function __construct(Request $request)
     {
-        $content = $request->getContent();
-        $data = json_decode($content, true);
-        $this->requestData = $data;
-
         // sessionチェックは一旦、行わない
 
         // if (!isset($data['cuid'])) {
@@ -28,9 +23,9 @@ class RequestBase extends FormRequest
         // }
     }
 
-    public function getRequestData(): array
+    public function getRequest(): array
     {
-        return $this->requestData;
+        return $this->validated();
     }
 
     // /**

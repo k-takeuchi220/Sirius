@@ -10,11 +10,25 @@ class {{$name}}Request extends RequestBase
         return [
 @foreach ($request as $req)
             <?php
-                $type = BladeFunc::convertToRequest($req['type']);
+                $rule = $req['rule'];
                 $name = $req['name'];
-                echo empty($type) ?: "'${name}' => '${type}',";
-            ?>   
+                empty($rule) ?: print "'${name}' => '${rule}',".PHP_EOL;
+            ?>
+@endforeach
+@foreach ($params as $param)
+            '{{$param}}' => 'required|string',
 @endforeach
         ];
     }
+@if(!empty($params))
+
+    public function validationData()
+    {
+        return array_merge($this->request->all(), [
+@foreach ($params as $param)
+            '{{$param}}' => $this->{{$param}},
+@endforeach
+        ]);
+    }
+@endif
 }

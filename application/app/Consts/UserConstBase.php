@@ -17,6 +17,8 @@ class UserConstBase
 
     public const CLASS_MD_PATH = './md/class';
 
+    public const API_ROUTES_PATH = './routes/api.php';
+
     // file output mode
     public const MODE_OVERRIDE = 1;
 

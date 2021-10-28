@@ -4,10 +4,24 @@
     "apis":[
         {
             "name": "Sample1",
-            "comment": "固定のメッセージを返すだけ",
+            "route": "/sample1",
+            "method": "POST",
+            "comment": "固定のメッセージを返す",
             "request":[],
             "response": [
                 {"name": "msg", "type": "string", "comment": "Hello worldが固定で入る"}
+            ]
+        },
+        {
+            "name": "Sample2",
+            "route": "/sample2/{name}",
+            "method": "POST",
+            "comment": "設定したメッセージを返す",
+            "request":[
+                {"name": "msg", "type": "string", "rule": "required|string", "comment": ""}
+            ],
+            "response": [
+                {"name": "msg", "type": "string", "comment": "{name}さん、{msg}"}
             ]
         }
     ]

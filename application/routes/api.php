@@ -16,5 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('sample1', 'Api\Preprocess\Sample\Sample1PreprocessController@index');
+Route::post('sample1', 'Api\Preprocess\Sample\Sample1PreprocessController@index')->name('Sample.Sample1');
+Route::post('/sample2/{name}', 'Api\Preprocess\Sample\Sample2PreprocessController@index')->name('Sample.Sample2');
