@@ -26,3 +26,32 @@ Response
 |:-----|:-----|:--------|
 | msg | string | {name}さん、{msg} |
 
+## POST /sample3
+
+ユーザ作成  
+
+Request  
+| name | type | comment |
+|:-----|:-----|:--------|
+| name | string | name |
+
+Response
+| name | type | comment |
+|:-----|:-----|:--------|
+| - | - | - |
+
+## POST /sample4
+
+ユーザ情報取得  
+
+Request  
+| name | type | comment |
+|:-----|:-----|:--------|
+| name | string | name |
+
+Response
+| name | type | comment |
+|:-----|:-----|:--------|
+| name | string |  |
+| email | string |  |
+
