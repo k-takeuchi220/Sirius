@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Consts\ExitCodeConst;
+use App\Exceptions\FinishProcess;
 use Illuminate\Http\Request;
-
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class RequestBase extends FormRequest
 {
@@ -28,23 +30,13 @@ class RequestBase extends FormRequest
         return $this->validated();
     }
 
-    // /**
-    //  * Determine if the user is authorized to make this request.
-    //  *
-    //  * @return bool
-    //  */
-    // public function authorize()
-    // {
-    //     return true;
-    // }
+    public function failedValidation(Validator $validator): void
+    {
+        $errors = $validator->errors()->toArray();
+        $message =  reset($errors)[0];
+        $code = ExitCodeConst::FAILD_VALIDATION_REQUEST;
+        $status = 422;
 
-    // /**
-    //  * Get the validation rules that apply to the request.
-    //  *
-    //  * @return array
-    //  */
-    // public function rules()
-    // {
-    //     return self::$rules;
-    // }
+        throw new FinishProcess($message, $code, $status);
+    }
 }
