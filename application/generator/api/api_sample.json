@@ -23,6 +23,29 @@
             "response": [
                 {"name": "msg", "type": "string", "comment": "{name}さん、{msg}"}
             ]
+        },
+        {
+            "name": "Sample3",
+            "route": "/sample3",
+            "method": "POST",
+            "comment": "ユーザ作成",
+            "request":[
+                {"name": "name", "type": "string", "rule": "required|string", "comment": ""}
+            ],
+            "response": []
+        },
+        {
+            "name": "Sample4",
+            "route": "/sample4",
+            "method": "POST",
+            "comment": "ユーザ情報取得",
+            "request":[
+                {"name": "name", "type": "string", "rule": "required|string", "comment": ""}
+            ],
+            "response": [
+                {"name": "name", "type": "string", "comment": ""},
+                {"name": "email", "type": "string", "comment": ""}
+            ]
         }
     ]
 }
