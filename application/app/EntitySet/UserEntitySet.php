@@ -11,12 +11,12 @@ class UserEntitySet
 {
     public static function getUserByName(string $name): ?User
     {
-        $UsersModel = UsersModel::where('name', $name)->first();
-        if(empty($UsersModel)){
+        $usersModel = UsersModel::where('name', $name)->first();
+        if(empty($usersModel)){
             throw new FinishProcess('User not found. name='.$name, ExitCodeConst::NOT_FOUND);
         }
 
-        $user = new User($UsersModel);
+        $user = new User($usersModel);
         return $user;
     }
 }
