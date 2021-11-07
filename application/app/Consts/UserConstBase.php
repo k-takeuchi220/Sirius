@@ -11,6 +11,10 @@ class UserConstBase
 
     public const CONTROLLER_PATH = './App/Http/Controllers/Api';
 
+    public const MODEL_PATH = './App/Models';
+    
+    public const MODEL_BASE_PATH = './App/Models/Base';
+
     public const API_JSON_PATH = './generator/api';
 
     public const API_MD_PATH = './md/api';
