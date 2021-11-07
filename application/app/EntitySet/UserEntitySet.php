@@ -5,18 +5,18 @@ namespace App\EntitySet;
 use App\Consts\ExitCodeConst;
 use App\Entities\User;
 use App\Exceptions\FinishProcess;
-use App\Models\UserModel;
+use App\Models\UsersModel;
 
 class UserEntitySet
 {
     public static function getUserByName(string $name): ?User
     {
-        $userModel = UserModel::where('name', $name)->first();
-        if(empty($userModel)){
+        $UsersModel = UsersModel::where('name', $name)->first();
+        if(empty($UsersModel)){
             throw new FinishProcess('User not found. name='.$name, ExitCodeConst::NOT_FOUND);
         }
 
-        $user = new User($userModel);
+        $user = new User($UsersModel);
         return $user;
     }
 }

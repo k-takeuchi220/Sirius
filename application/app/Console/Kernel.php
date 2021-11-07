@@ -14,8 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
-        Commands\MakeApiCommand::class,
-        Commands\MakeMdCommand::class
+        Commands\ApiCreateCommand::class,
+        Commands\ApiMdCommand::class,
         Commands\ApiDeleteCommand::class,
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Console\CommandUtil;
 use App\Console\Kernel;
 use App\Consts\UserConst;
 use Illuminate\Console\Command;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
 
-class MakeApiCommand extends Command
+class ApiCreateCommand extends Command
 {
     public const PHP_TAG = '<?php'.PHP_EOL;
 
@@ -24,7 +25,7 @@ class MakeApiCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:api';
+    protected $signature = 'api:create';
 
     /**
      * The console command description.
@@ -48,17 +49,17 @@ class MakeApiCommand extends Command
     public static $createFiles = [
         'Request' => [
             'viewFile' => 'request',
-            'mode' => UserConst::MODE_OVERRIDE,
+            'mode' => UserConst::FILE_MODE_OVERRIDE,
             'path' => UserConst::REQUEST_PATH
         ],
         'PreprocessController' => [
             'viewFile' => 'pcontroller',
-            'mode' => UserConst::MODE_OVERRIDE,
+            'mode' => UserConst::FILE_MODE_OVERRIDE,
             'path' => UserConst::PCONTROLLER_PATH
         ],
         'Controller' => [
             'viewFile' => 'controller',
-            'mode' => UserConst::MODE_CREATE_NEW,
+            'mode' => UserConst::FILE_MODE_CREATE_NEW,
             'path' => UserConst::CONTROLLER_PATH
         ],
     ];
@@ -93,13 +94,14 @@ class MakeApiCommand extends Command
         $params['params'] = $matches[1];
 
         foreach (self::$createFiles as $suffix => $file) {
+            $fileName = $params['name'].$suffix;
+            $params['class'] = $fileName;
             $content = self::PHP_TAG . view('apiTemplate/'.$file['viewFile'], $params)->render();
-            $fileName = $params['name'].$suffix.'.php';
 
             $dirPath = $file['path'].'/'.$dir;
             $this->makeDir($dirPath);
-            $path = $dirPath.'/'.$fileName;
-            $this->makeFile($path, $content, $file['mode']);
+            $path = $dirPath.'/'.$fileName.'.php';
+            CommandUtil::makeFile($path, $content, $file['mode']);
         }
 
         // api.php 存在しなければ追記
@@ -114,21 +116,6 @@ class MakeApiCommand extends Command
     {
         if (!file_exists($dir)) {
             mkdir($dir, 0777);
-        }
-    }
-
-    private function makeFile(string $path, string $content, int $mode): void
-    {
-        switch ($mode) {
-            case UserConst::MODE_OVERRIDE:
-                file_put_contents($path, $content);
-                break;
-
-            case UserConst::MODE_CREATE_NEW:
-                if (!file_exists($path)) {
-                    file_put_contents($path, $content);
-                }
-                break;
         }
     }
 }

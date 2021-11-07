@@ -2,37 +2,37 @@
 
 namespace App\Entities;
 
-use App\Models\UserModel;
+use App\Models\UsersModel;
 
 class User
 {
-    protected $userModel;
+    protected $UsersModel;
 
-    public function __construct(?UserModel $model = null)
+    public function __construct(?UsersModel $model = null)
     {
         if(empty($model)){
-            $model = new UserModel();
+            $model = new UsersModel();
         }
-        $this->userModel = $model;
+        $this->UsersModel = $model;
     }
 
-    public function create(string $name, string $email, string $passwd): void
+    public function create(string $userId, string $name, string $email, string $passwd): void
     {
-        $this->userModel->initialize($name, $email, $passwd);
+        $this->UsersModel->initialize($userId, $name, $email, $passwd);
     }
 
     public function save(): void
     {
-        $this->userModel->save();
+        $this->UsersModel->save();
     }
 
     public function getName(): string
     {
-        return $this->userModel->getName();
+        return $this->UsersModel->getName();
     }
 
     public function getEmail(): string
     {
-        return $this->userModel->getEmail();
+        return $this->UsersModel->getEmail();
     }
 }

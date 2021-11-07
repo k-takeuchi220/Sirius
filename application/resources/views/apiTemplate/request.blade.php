@@ -3,7 +3,7 @@ namespace App\Http\Requests\Api\{{$dir}};
 
 use App\Http\Requests\Api\RequestBase;
 
-class {{$name}}Request extends RequestBase
+class {{$class}} extends RequestBase
 {
     public function rules()
     {

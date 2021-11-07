@@ -20,9 +20,9 @@ class UserConstBase
     public const API_ROUTES_PATH = './routes/api.php';
 
     // file output mode
-    public const MODE_OVERRIDE = 1;
+    public const FILE_MODE_OVERRIDE = 1;
 
-    public const MODE_CREATE_NEW = 2;
+    public const FILE_MODE_CREATE_NEW = 2;
     
 
 
