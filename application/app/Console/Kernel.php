@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         //
         Commands\MakeApiCommand::class,
         Commands\MakeMdCommand::class
+        Commands\ApiDeleteCommand::class,
     ];
 
     /**
