@@ -20,3 +20,4 @@ Route::post('sample1', 'Api\Preprocess\Sample\Sample1PreprocessController@index'
 Route::post('/sample2/{name}', 'Api\Preprocess\Sample\Sample2PreprocessController@index')->name('Sample.Sample2');
 Route::post('/sample3', 'Api\Preprocess\Sample\Sample3PreprocessController@index')->name('Sample.Sample3');
 Route::post('/sample4', 'Api\Preprocess\Sample\Sample4PreprocessController@index')->name('Sample.Sample4');
+Route::post('/signup', 'Api\Preprocess\User\SignupPreprocessController@index')->name('User.Signup');

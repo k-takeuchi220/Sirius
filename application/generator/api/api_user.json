@@ -1,0 +1,22 @@
+{
+    "dir": "User",
+    "comment": "ユーザ関連",
+    "apis":[
+        {
+            "name": "Signup",
+            "route": "/signup",
+            "method": "POST",
+            "comment": "ユーザ作成",
+            "request":[
+                {"name": "userId", "type": "string", "rule": "required|string", "comment": ""},
+                {"name": "email", "type": "string", "rule": "required|email", "comment": ""},
+                {"name": "passwd", "type": "string", "rule": "required|string", "comment": ""}
+            ],
+            "response": []
+        }
+    ]
+}
+
+
+
+
